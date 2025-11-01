@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/10/31 15:14:00 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/01 12:13:59 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	ft_printf(const char *fmt, ...)
 {
 	va_list	args;
 	char	*temp;
+	int		count;
 
+	count = 0;
 	va_start(args, fmt);
 	while (*fmt != '\0')
 	{
@@ -29,16 +31,24 @@ int	ft_printf(const char *fmt, ...)
 			if (*fmt == 'd')
 			{
 				temp = ft_itoa(va_arg(args, int));
-				write(1, temp, ft_strlen(temp));
+				count += write(1, temp, ft_strlen(temp));
 				free(temp);
+				fmt++;
 			}
+			else if (*fmt != '\0')
+			{
+				count += write(1, fmt, 1);
+				fmt++;
+			}
+		}
+		else
+		{
+			count += write(1, fmt, 1);
 			fmt++;
 		}
-		write(1, fmt, 1);
-		fmt++;
 	}
 	va_end(args);
-	return (1);
+	return (count);
 }
 
 // int	main(void)
