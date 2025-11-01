@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/01 14:48:29 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/01 15:03:10 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ int	ft_printf(const char *fmt, ...)
 
 // int	main(void)
 // {
-// 	ft_printf("another test %c %d", 'g', 123);
+// 	ft_printf("another test %c %d", 'a', 123);
 // }
