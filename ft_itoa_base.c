@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:52:57 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/01 16:11:21 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/02 15:53:16 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static void	reverse(char *str, int len)
 	}
 }
 
-char	*ft_itoa_base(int value, int base, int dig, int j)
+char	*ft_itoa_base(unsigned long value, int base, int dig, int j)
 {
 	char			*str;
 	int				i;
 	int				is_negative;
-	unsigned int	n;
+	unsigned long	n;
 	char			digits[17];
 
 	while (dig < 16)
@@ -70,8 +70,8 @@ char	*ft_itoa_base(int value, int base, int dig, int j)
 		n = -value;
 	}
 	else
-		n = (unsigned int)value;
-	str = malloc(35);
+		n = (unsigned long)value;
+	str = malloc(70);
 	if (!str)
 		return (NULL);
 	while (n > 0)

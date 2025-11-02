@@ -6,16 +6,13 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/01 16:13:23 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/02 16:25:26 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
 
-// CODE A FUNCTION THAT WILL CALL EVERY TEST FUNCTION FOR
-//% CASES AND CODE THE OTHER TEST CASE FUNCTIONS FOR NOW WE ONLY HAVE %d %c %%
-//	%s (kinda)
 int	ft_printf(const char *fmt, ...)
 {
 	char			tempc;
@@ -23,6 +20,7 @@ int	ft_printf(const char *fmt, ...)
 	char			*temps;
 	int				count;
 	unsigned long	tempp;
+	unsigned int	tempi;
 
 	count = 0;
 	va_start(args, fmt);
@@ -31,7 +29,7 @@ int	ft_printf(const char *fmt, ...)
 		if (*fmt == '%')
 		{
 			fmt++;
-			if (*fmt == 'd')
+			if (*fmt == 'd' || *fmt == 'i')
 			{
 				temps = ft_itoa(va_arg(args, int));
 				count += write(1, temps, ft_strlen(temps));
@@ -62,6 +60,14 @@ int	ft_printf(const char *fmt, ...)
 				}
 				fmt++;
 			}
+			// else if (*fmt == 'u')
+			// {
+			// 	tempi = (unsigned int)va_arg(args, unsigned int);
+			// 	temps = ft_itoa(tempi);
+			// 	count += write(1, temps, ft_strlen(temps));
+			// 	free(temps);
+			// 	fmt++;
+			// }
 			else if (*fmt != '\0')
 			{
 				count += write(1, fmt, 1);
@@ -78,14 +84,13 @@ int	ft_printf(const char *fmt, ...)
 	return (count);
 }
 
-// int	main(void)
-// {
-// 	int	tse;
-// 	int	*ptr;
+int	main(void)
+{
+	int	tse;
+	int	*ptr;
 
-// 	ptr = &tse;
-// 	ft_printf("another test %c %d %s %d %c %p %%\n", 'b', 123, "test", 123, 'a',
-// 		ptr);
-// 	printf("another test %c %d %s %d %c %p %%\n", 'b', 123, "test", 123, 'a',
-// 		ptr);
-// }
+	tse = 1;
+	ptr = &tse;
+	ft_printf("another test %u\n");
+	printf("another test %u\n", -1);
+}

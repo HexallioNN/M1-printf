@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:48:08 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/01 16:07:52 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/02 16:25:57 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 # include <unistd.h>
 
 int		ft_printf(const char *fmt, ...);
-char	*ft_itoa_base(int value, int base, int dig, int j);
+char	*ft_itoa_base(unsigned long value, int base, int dig, int j);
 
 #endif
