@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/02 16:25:26 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/05 12:48:16 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,33 @@ int	ft_printf(const char *fmt, ...)
 				}
 				fmt++;
 			}
-			// else if (*fmt == 'u')
-			// {
-			// 	tempi = (unsigned int)va_arg(args, unsigned int);
-			// 	temps = ft_itoa(tempi);
-			// 	count += write(1, temps, ft_strlen(temps));
-			// 	free(temps);
-			// 	fmt++;
-			// }
+			else if (*fmt == 'u')
+			{
+				tempi = (unsigned int)va_arg(args, unsigned int);
+				temps = ft_itoa(tempi);
+				count += write(1, temps, ft_strlen(temps));
+				free(temps);
+				fmt++;
+			}
+			else if (*fmt == 'x' || *fmt == 'X')
+			{
+				temps = ft_itoa_base(va_arg(args, int), 16, 0, 0);
+				if (temps)
+				{
+					if (*fmt == 'X')
+					{
+						tempi = 0;
+						while (temps[tempi] != '\0')
+						{
+							temps[tempi] = ft_toupper(temps[tempi]);
+							tempi++;
+						}
+					}
+					count += write(1, temps, ft_strlen(temps));
+					free(temps);
+				}
+				fmt++;
+			}
 			else if (*fmt != '\0')
 			{
 				count += write(1, fmt, 1);
@@ -84,13 +103,13 @@ int	ft_printf(const char *fmt, ...)
 	return (count);
 }
 
-int	main(void)
-{
-	int	tse;
-	int	*ptr;
+// int	main(void)
+// {
+// 	int	tse;
+// 	int	*ptr;
 
-	tse = 1;
-	ptr = &tse;
-	ft_printf("another test %u\n");
-	printf("another test %u\n", -1);
-}
+// 	tse = 1;
+// 	ptr = &tse;
+// 	ft_printf("another test %X\n", 123123123);
+// 	printf("another test %X\n", 123123123);
+// }
