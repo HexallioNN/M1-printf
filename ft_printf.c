@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/05 12:48:16 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/05 13:25:42 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_printf(const char *fmt, ...)
 			else if (*fmt == 'u')
 			{
 				tempi = (unsigned int)va_arg(args, unsigned int);
-				temps = ft_itoa(tempi);
+				temps = ft_utoa(tempi);
 				count += write(1, temps, ft_strlen(temps));
 				free(temps);
 				fmt++;
@@ -110,6 +110,6 @@ int	ft_printf(const char *fmt, ...)
 
 // 	tse = 1;
 // 	ptr = &tse;
-// 	ft_printf("another test %X\n", 123123123);
-// 	printf("another test %X\n", 123123123);
+// 	ft_printf("another test %u\n", -42949);
+// 	printf("another test %u\n", -42949);
 // }

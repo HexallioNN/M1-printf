@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:52:57 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/02 15:53:16 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/05 13:20:49 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,51 @@ char	*ft_itoa_base(unsigned long value, int base, int dig, int j)
 		str[i++] = '-';
 	str[i] = '\0';
 	reverse(str, i);
+	return (str);
+}
+
+static int	count_digits(long n)
+{
+	int	count;
+
+	count = 0;
+	if (n <= 0)
+		count = 1;
+	while (n != 0)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count);
+}
+
+char	*ft_utoa(int n)
+{
+	char *str;
+	long nb;
+	int len;
+	int i;
+
+	nb = n;
+	if (n < 0)
+	{
+		nb = 4294967296 + nb;
+	}
+
+	len = count_digits(nb);
+	i = len - 1;
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+
+	if (n == 0)
+		str[0] = '0';
+	while (nb > 0)
+	{
+		str[i--] = (nb % 10) + '0';
+		nb /= 10;
+	}
+
 	return (str);
 }
