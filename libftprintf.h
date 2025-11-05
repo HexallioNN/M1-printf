@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:48:08 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/05 13:12:20 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/05 14:06:44 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,12 @@
 int		ft_printf(const char *fmt, ...);
 char	*ft_itoa_base(unsigned long value, int base, int dig, int j);
 char	*ft_utoa(int n);
+int		ft_dicase(int variable, int count);
+int		ft_ccase(int variable, int count);
+int		ft_scase(char *variable, int count);
+int		ft_pcase(void *variable, int count);
+int		ft_ucase(unsigned int variable, int count);
+int		ft_xcase(int variable, int count, char string);
+int		ft_emptycase(int count, char string);
 
 #endif

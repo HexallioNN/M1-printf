@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/05 13:25:42 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/05 14:15:20 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 
 int	ft_printf(const char *fmt, ...)
 {
-	char			tempc;
-	va_list			args;
-	char			*temps;
-	int				count;
-	unsigned long	tempp;
-	unsigned int	tempi;
+	va_list	args;
+	int		count;
 
 	count = 0;
 	va_start(args, fmt);
@@ -30,72 +26,24 @@ int	ft_printf(const char *fmt, ...)
 		{
 			fmt++;
 			if (*fmt == 'd' || *fmt == 'i')
-			{
-				temps = ft_itoa(va_arg(args, int));
-				count += write(1, temps, ft_strlen(temps));
-				free(temps);
-				fmt++;
-			}
+				count = ft_dicase(va_arg(args, int), count);
 			else if (*fmt == 'c')
-			{
-				tempc = va_arg(args, int);
-				count += write(1, &tempc, 1);
-				fmt++;
-			}
+				count = ft_ccase(va_arg(args, int), count);
 			else if (*fmt == 's')
-			{
-				temps = va_arg(args, char *);
-				count += write(1, temps, ft_strlen(temps));
-				fmt++;
-			}
+				count = ft_scase(va_arg(args, char *), count);
 			else if (*fmt == 'p')
-			{
-				tempp = (unsigned long)va_arg(args, void *);
-				count += write(1, "0x", 2);
-				temps = ft_itoa_base(tempp, 16, 0, 0);
-				if (temps)
-				{
-					count += write(1, temps, ft_strlen(temps));
-					free(temps);
-				}
-				fmt++;
-			}
+				count = ft_pcase(va_arg(args, void *), count);
 			else if (*fmt == 'u')
-			{
-				tempi = (unsigned int)va_arg(args, unsigned int);
-				temps = ft_utoa(tempi);
-				count += write(1, temps, ft_strlen(temps));
-				free(temps);
-				fmt++;
-			}
+				count = ft_ucase(va_arg(args, unsigned int), count);
 			else if (*fmt == 'x' || *fmt == 'X')
-			{
-				temps = ft_itoa_base(va_arg(args, int), 16, 0, 0);
-				if (temps)
-				{
-					if (*fmt == 'X')
-					{
-						tempi = 0;
-						while (temps[tempi] != '\0')
-						{
-							temps[tempi] = ft_toupper(temps[tempi]);
-							tempi++;
-						}
-					}
-					count += write(1, temps, ft_strlen(temps));
-					free(temps);
-				}
-				fmt++;
-			}
+				count = ft_xcase(va_arg(args, int), count, *fmt);
 			else if (*fmt != '\0')
-			{
-				count += write(1, fmt, 1);
-				fmt++;
-			}
+				count = ft_emptycase(count, *fmt);
+			fmt++;
 		}
 		else
 		{
-			count += write(1, fmt, 1);
+			count = ft_emptycase(count, *fmt);
 			fmt++;
 		}
 	}
@@ -103,13 +51,13 @@ int	ft_printf(const char *fmt, ...)
 	return (count);
 }
 
-// int	main(void)
-// {
-// 	int	tse;
-// 	int	*ptr;
+int	main(void)
+{
+	int	tse;
+	int	*ptr;
 
-// 	tse = 1;
-// 	ptr = &tse;
-// 	ft_printf("another test %u\n", -42949);
-// 	printf("another test %u\n", -42949);
-// }
+	tse = 1;
+	ptr = &tse;
+	ft_printf("another test %%\n");
+	printf("another test %%\n");
+}
