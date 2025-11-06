@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:02:25 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/05 14:08:04 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/06 10:35:26 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_xcase(int variable, int count, char string)
 	char	*temps;
 	int		tempi;
 
-	temps = ft_itoa_base(variable, 16, 0, 0);
+	temps = ft_itoa_base(variable, 16);
 	if (temps)
 	{
 		if (string == 'X')

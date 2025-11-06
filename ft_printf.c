@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/05 14:15:20 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/06 10:44:51 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,14 @@ int	ft_printf(const char *fmt, ...)
 
 	count = 0;
 	va_start(args, fmt);
-	while (*fmt != '\0')
+	while (*fmt)
 	{
 		if (*fmt == '%')
 		{
 			fmt++;
-			if (*fmt == 'd' || *fmt == 'i')
-				count = ft_dicase(va_arg(args, int), count);
-			else if (*fmt == 'c')
-				count = ft_ccase(va_arg(args, int), count);
-			else if (*fmt == 's')
-				count = ft_scase(va_arg(args, char *), count);
-			else if (*fmt == 'p')
-				count = ft_pcase(va_arg(args, void *), count);
-			else if (*fmt == 'u')
-				count = ft_ucase(va_arg(args, unsigned int), count);
-			else if (*fmt == 'x' || *fmt == 'X')
-				count = ft_xcase(va_arg(args, int), count, *fmt);
-			else if (*fmt != '\0')
-				count = ft_emptycase(count, *fmt);
-			fmt++;
+			count = handle_format_case(*fmt, &args, count);
+			if (*fmt)
+				fmt++;
 		}
 		else
 		{
@@ -58,6 +46,6 @@ int	main(void)
 
 	tse = 1;
 	ptr = &tse;
-	ft_printf("another test %%\n");
-	printf("another test %%\n");
+	ft_printf("another test %c %s %d %i %u %x %%\n", 'a', "test", 1, 2, -3, 4);
+	printf("another test %c %s %d %i %u %x %%\n", 'a', "test", 1, 2, -3, 4);
 }
