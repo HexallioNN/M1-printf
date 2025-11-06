@@ -6,12 +6,12 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 13:38:19 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/06 10:44:20 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/06 13:36:14 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
-#include "libftprintf.h"
 
 int	handle_format_case(char spec, va_list *args, int count)
 {

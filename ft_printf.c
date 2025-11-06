@@ -6,12 +6,12 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/06 13:29:03 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/06 13:35:57 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
-#include "libftprintf.h"
 
 int	ft_printf(const char *fmt, ...)
 {

@@ -6,12 +6,12 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:02:25 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/06 10:35:26 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/06 13:36:18 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
-#include "libftprintf.h"
 
 int	ft_xcase(int variable, int count, char string)
 {

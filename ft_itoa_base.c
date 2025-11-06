@@ -6,11 +6,11 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:52:57 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/06 10:34:15 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/06 13:36:06 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdlib.h>
 
 static int	count_digits(unsigned long n, int base)

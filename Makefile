@@ -13,6 +13,7 @@ SRCS = ft_printf.c \
        ft_checker.c
 
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
+LIBFT_A = $(LIBFT)/libft.a
 
 all: $(NAME)
 
@@ -20,6 +21,7 @@ libft:
 	@$(MAKE) -C $(LIBFT)
 
 $(NAME): libft $(OBJS)
+	cp $(LIBFT_A) $(NAME)
 	ar rcs $(NAME) $(OBJS)
 
 $(OBJDIR)/%.o: %.c | $(OBJDIR)
