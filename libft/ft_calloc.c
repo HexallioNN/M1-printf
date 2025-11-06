@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 15:57:03 by ikalach           #+#    #+#             */
-/*   Updated: 2025/10/27 09:13:08 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/06 13:27:52 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*pointer;
 
-	if (size != 0 && nmemb > (size_t)(INT_MAX) / size)
+	if (size != 0 && nmemb > __SIZE_MAX__ / size)
 		return (NULL);
 	pointer = malloc(nmemb * size);
 	if (pointer == NULL)
