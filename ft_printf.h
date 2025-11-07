@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:48:08 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/07 14:05:37 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/07 16:52:37 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# if defined(__linux__)
+#  define PTRNULL "(nil)"
+# elif defined(__APPLE__)
+#  define PTRNULL "0x0"
+# endif
 
 int		ft_printf(const char *fmt, ...);
 char	*ft_itoa_base_unsigned(unsigned long num, int base);
