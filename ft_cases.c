@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 13:44:25 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/06 13:36:22 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/07 14:19:00 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int	ft_scase(char *variable, int count)
 {
 	char	*temps;
 
-	temps = variable;
+	if (variable)
+		temps = variable;
+	else
+		temps = "(null)";
 	count += write(1, temps, ft_strlen(temps));
 	return (count);
 }
@@ -46,9 +49,9 @@ int	ft_pcase(void *variable, int count)
 	unsigned long	tempp;
 	char			*temps;
 
-	tempp = (unsigned long)variable;
+	tempp = (unsigned long)(variable);
 	count += write(1, "0x", 2);
-	temps = ft_itoa_base(tempp, 16);
+	temps = ft_itoa_base_unsigned(tempp, 16);
 	if (temps)
 	{
 		count += write(1, temps, ft_strlen(temps));

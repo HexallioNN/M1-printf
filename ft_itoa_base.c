@@ -6,20 +6,20 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 15:52:57 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/06 13:36:06 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/07 13:58:54 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-static int	count_digits(unsigned long n, int base)
+static int	count_digits_unsigned(unsigned long n, int base)
 {
 	int	count;
 
 	count = 0;
-	if (n <= 0)
-		count = 1;
+	if (n == 0)
+		return (1);
 	while (n != 0)
 	{
 		n /= base;
@@ -28,47 +28,26 @@ static int	count_digits(unsigned long n, int base)
 	return (count);
 }
 
-static unsigned long	ft_handle_sign(int value, int base, int *sign)
+char	*ft_itoa_base_unsigned(unsigned long num, int base)
 {
-	unsigned long	num;
-
-	*sign = 0;
-	if (value < 0 && base == 10)
-	{
-		*sign = 1;
-		num = -(unsigned long)value;
-	}
-	else
-	{
-		num = (unsigned long)value;
-	}
-	return (num);
-}
-
-char	*ft_itoa_base(int value, int base)
-{
-	char			*str;
-	char			*digits;
-	unsigned long	num;
-	int				sign;
-	int				len;
+	char	*digits;
+	int		len;
+	char	*str;
+	int		i;
 
 	digits = "0123456789abcdef";
-	if (base < 2 || base > 16)
-		return (NULL);
-	num = ft_handle_sign(value, base, &sign);
-	len = count_digits(num, base) + sign;
-	str = (char *)malloc(len + 1);
+	len = count_digits_unsigned(num, base);
+	str = malloc(len + 1);
 	if (!str)
 		return (NULL);
 	str[len] = '\0';
-	while (len-- > sign)
+	i = len - 1;
+	while (i >= 0)
 	{
-		str[len] = digits[num % base];
+		str[i] = digits[num % base];
 		num /= base;
+		i--;
 	}
-	if (sign)
-		str[0] = '-';
 	return (str);
 }
 
@@ -84,7 +63,7 @@ char	*ft_utoa(int n)
 	{
 		nb = 4294967296 + nb;
 	}
-	len = count_digits(nb, 10);
+	len = count_digits_unsigned(nb, 10);
 	i = len - 1;
 	str = malloc(len + 1);
 	if (!str)
