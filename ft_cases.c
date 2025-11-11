@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 13:44:25 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/07 16:52:56 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/11 08:45:10 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,63 +16,84 @@
 int	ft_dicase(int variable, int count)
 {
 	char	*temps;
+	int		written;
 
 	temps = ft_itoa(variable);
-	count += write(1, temps, ft_strlen(temps));
+	if (!temps)
+		return (-1);
+	written = write(1, temps, ft_strlen(temps));
 	free(temps);
-	return (count);
+	if (written == -1)
+		return (-1);
+	return (count + written);
 }
 
 int	ft_ccase(int variable, int count)
 {
 	int	tempc;
+	int	written;
 
 	tempc = variable;
-	count += write(1, &tempc, 1);
-	return (count);
+	written = write(1, &tempc, 1);
+	if (written == -1)
+		return (-1);
+	return (count + written);
 }
 
 int	ft_scase(char *variable, int count)
 {
 	char	*temps;
+	int		written;
 
 	if (variable)
 		temps = variable;
 	else
 		temps = "(null)";
-	count += write(1, temps, ft_strlen(temps));
-	return (count);
+	written = write(1, temps, ft_strlen(temps));
+	if (written == -1)
+		return (-1);
+	return (count + written);
 }
 
 int	ft_pcase(void *variable, int count)
 {
 	unsigned long	tempp;
 	char			*temps;
+	int				written;
 
 	if (variable == 0)
 	{
-		count += write(1, PTRNULL, ft_strlen(PTRNULL));
-		return (count);
+		written = write(1, PTRNULL, ft_strlen(PTRNULL));
+		if (written == -1)
+			return (-1);
+		return (count + written);
 	}
 	tempp = (unsigned long)(variable);
-	count += write(1, "0x", 2);
+	written = write(1, "0x", 2);
+	if (written == -1)
+		return (-1);
+	count += written;
 	temps = ft_itoa_base_unsigned(tempp, 16);
-	if (temps)
-	{
-		count += write(1, temps, ft_strlen(temps));
-		free(temps);
-	}
-	return (count);
+	if (!temps)
+		return (-1);
+	written = write(1, temps, ft_strlen(temps));
+	free(temps);
+	if (written == -1)
+		return (-1);
+	return (count + written);
 }
 
 int	ft_ucase(unsigned int variable, int count)
 {
-	int		tempi;
+	int		written;
 	char	*temps;
 
-	tempi = (unsigned int)variable;
-	temps = ft_utoa(tempi);
-	count += write(1, temps, ft_strlen(temps));
+	temps = ft_utoa(variable);
+	if (!temps)
+		return (-1);
+	written = write(1, temps, ft_strlen(temps));
 	free(temps);
-	return (count);
+	if (written == -1)
+		return (-1);
+	return (count + written);
 }

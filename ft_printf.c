@@ -6,34 +6,48 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/06 13:35:57 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/11 09:41:38 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
+#include <stdarg.h>
+
+static int	process_format(const char **fmt, va_list *args, int count)
+{
+	(*fmt)++;
+	return (handle_format_case(**fmt, args, count));
+}
+
+static int	process_char(const char **fmt, int count)
+{
+	return (ft_emptycase(count, **fmt));
+}
 
 int	ft_printf(const char *fmt, ...)
 {
 	va_list	args;
 	int		count;
+	int		res;
 
-	count = 0;
+	if (!fmt)
+		return (-1);
 	va_start(args, fmt);
+	count = 0;
 	while (*fmt)
 	{
 		if (*fmt == '%')
-		{
-			fmt++;
-			count = handle_format_case(*fmt, &args, count);
-			if (*fmt)
-				fmt++;
-		}
+			res = process_format(&fmt, &args, count);
 		else
+			res = process_char(&fmt, count);
+		if (res == -1)
 		{
-			count = ft_emptycase(count, *fmt);
-			fmt++;
+			va_end(args);
+			return (-1);
 		}
+		count = res;
+		fmt++;
 	}
 	va_end(args);
 	return (count);

@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 13:38:19 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/07 16:25:41 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/11 08:45:31 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,26 @@
 
 int	handle_format_case(char spec, va_list *args, int count)
 {
+	int	result;
+
+	result = 0;
 	if (spec == 'd' || spec == 'i')
-		count = ft_dicase(va_arg(*args, int), count);
+		result = ft_dicase(va_arg(*args, int), count);
 	else if (spec == 'c')
-		count = ft_ccase(va_arg(*args, int), count);
+		result = ft_ccase(va_arg(*args, int), count);
 	else if (spec == 's')
-		count = ft_scase(va_arg(*args, char *), count);
+		result = ft_scase(va_arg(*args, char *), count);
 	else if (spec == 'p')
-		count = ft_pcase(va_arg(*args, void *), count);
+		result = ft_pcase(va_arg(*args, void *), count);
 	else if (spec == 'u')
-		count = ft_ucase(va_arg(*args, unsigned int), count);
+		result = ft_ucase(va_arg(*args, unsigned int), count);
 	else if (spec == 'x' || spec == 'X')
-		count = ft_xcase(va_arg(*args, unsigned int), count, spec);
+		result = ft_xcase(va_arg(*args, unsigned int), count, spec);
 	else if (spec == '%')
-		count = ft_emptycase(count, '%');
+		result = ft_emptycase(count, '%');
 	else if (spec != '\0')
-		count = ft_emptycase(count, spec);
-	return (count);
+		result = ft_emptycase(count, spec);
+	if (result == -1)
+		return (-1);
+	return (result);
 }
