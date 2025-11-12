@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:47:32 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/11 09:41:38 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/12 12:37:46 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ int	ft_printf(const char *fmt, ...)
 
 // 	tse = 1;
 // 	ptr = &tse;
-// 	ft_printf("another test %c %s %d %i %u %x %%\n", 'a', "test", 1, 2, -3, 4);
-// 	printf("another test %c %s %d %i %u %x %%\n", 'a', "test", 1, 2, -3, 4);
+// 	ft_printf("hey%");
+// 	printf("hey%");
 // }

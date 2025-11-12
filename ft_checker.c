@@ -6,7 +6,7 @@
 /*   By: ikalach <ikalach@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 13:38:19 by ikalach           #+#    #+#             */
-/*   Updated: 2025/11/11 08:45:31 by ikalach          ###   ########.fr       */
+/*   Updated: 2025/11/12 12:38:26 by ikalach          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	handle_format_case(char spec, va_list *args, int count)
 		result = ft_emptycase(count, '%');
 	else if (spec != '\0')
 		result = ft_emptycase(count, spec);
+	else if (spec == '\0')
+		return (-1);
 	if (result == -1)
 		return (-1);
 	return (result);
